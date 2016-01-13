@@ -1,0 +1,7 @@
+<dataConfig>
+ <dataSource type="JdbcDataSource" name="cfai" driver="com.mysql.jdbc.Driver" url="jdbc:mysql://localhost/fedora3" user="fedoraAdmin" password="cowp00p2012"/>
+ <document>
+     <entity name="cfai" 
+          query="select pid,dcTitle,state from doFields">
+     </entity>
+ </document>
