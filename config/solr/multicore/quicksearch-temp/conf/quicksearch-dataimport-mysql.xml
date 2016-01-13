@@ -1,0 +1,23 @@
+<dataConfig>
+<dataSource type="JdbcDataSource" 
+            driver="com.mysql.jdbc.Driver"
+            url="jdbc:mysql://localhost:3306/quicksearch"
+            user="quicksearch" 
+            password="quicksearchwire#:@"/>
+<document>
+  <entity name="daily"  
+    pk="id"
+    query="SELECT id, resource_url, link_text, search_term, click_category, click_time, log_time FROM quicksearchdata"
+    deltaImportQuery="SELECT id, resource_url, link_text, search_term, click_category, click_time, log_time FROM quicksearchdata WHERE ID='${dih.delta.id}'"
+    deltaQuery="SELECT id, resource_url, link_text, search_term, click_category, click_time, log_time FROM quicksearchdata WHERE log_time > '${dih.last_index_time}'"
+    >
+     <field column="id" name="id"/>
+     <field column="resource_url" name="resource_url"/>
+     <field column="link_text" name="link_text"/>
+     <field column="search_term" name="search_term"/>
+     <field column="click_category" name="click_category"/>       
+     <field column="click_time" name="click_time"/>
+     <field column="log_time" name="log_time"/>
+  </entity>
+</document>
+</dataConfig>
