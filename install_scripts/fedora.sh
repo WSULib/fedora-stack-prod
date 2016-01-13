@@ -51,6 +51,9 @@ echo "copying XACML policies to /data directory"
 mkdir /opt/fedora/data/fedora-xacml-policies/repository-policies/WSU
 cp $SHARED_DIR/downloads/WSUDOR_infrastructure/XACML/*.xml /opt/fedora/data/fedora-xacml-policies/repository-policies/WSU/
 
+# chown fedora dir (after copying policies)
+chown -R tomcat7:tomcat7 /opt/fedora
+
 # restart tomcat7
 service tomcat7 restart
 
