@@ -4,8 +4,8 @@
 #
 
 # VM IP
-VM_HOST='192.168.42.4'
-VM_NAME='fedora-stack-workdev'
+VM_HOST='192.168.42.5'
+VM_NAME='fedora-stack-prod'
 
 # Ouroboros
 OUROBOROS_HOME='/opt/ouroboros'
@@ -26,4 +26,8 @@ SOLR_HOME=/var/lib/tomcat7/webapps/solr4
 
 # CHANGE to solr4.xml when in PROD
 SOLR_CATALINA_CONFIG='solr4-temp.xml'
+
+# server hosts
+FEDORA_STACK_WORKDEV_HOST='192.168.42.4'
+FEDORA_STACK_STORAGE_HOST='192.168.42.6'
 
