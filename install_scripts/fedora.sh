@@ -35,10 +35,24 @@ cp $SHARED_DIR/downloads/fedora/fedora.fcfg /opt/fedora/server/config
 # chown fedora dir
 chown -R tomcat7:tomcat7 /opt/fedora
 
+# restart tomcat7
+service tomcat7 restart
+
+# Waiting for fedora to form
+while [ ! -d /opt/fedora/data/fedora-xacml-policies/repository-policies ]
+do
+ echo "waiting for fedora repository policies directory..."
+ tree /opt/fedora/data/fedora-xacml-policies/
+ sleep 2
+done
+
 # copy XACML policies
 echo "copying XACML policies to /data directory"
 mkdir /opt/fedora/data/fedora-xacml-policies/repository-policies/WSU
 cp $SHARED_DIR/downloads/WSUDOR_infrastructure/XACML/*.xml /opt/fedora/data/fedora-xacml-policies/repository-policies/WSU/
+
+# chown fedora dir (after copying policies)
+chown -R tomcat7:tomcat7 /opt/fedora
 
 # restart tomcat7
 service tomcat7 restart

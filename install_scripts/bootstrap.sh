@@ -24,6 +24,9 @@ apt-get -y install openssh-server
 # Build tools
 apt-get -y install build-essential
 
+# Python essentials
+apt-get -y install libxml2-dev libxslt1-dev python-dev python-setuptools
+
 # Git vim
 apt-get -y install git vim
 
