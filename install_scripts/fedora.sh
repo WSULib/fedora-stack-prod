@@ -28,9 +28,10 @@ mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/fedora/fedora
 # Installation
 java -jar $SHARED_DIR/downloads/fedora/fcrepo-installer-3.8.1.jar $SHARED_DIR/downloads/fedora/install.properties
 
-# copy custom fedora.fcfg
+# copy custom fedora.fcfg and replace values
 cp /opt/fedora/server/config/fedora.fcfg /opt/fedora/server/config/fedora.fcfg.BACKUP
 cp $SHARED_DIR/downloads/fedora/fedora.fcfg /opt/fedora/server/config
+sed -i "s/FEDORA_SERVER_HOST/$VM_HOST/g" /opt/fedora/server/config/fedora.fcfg
 
 # chown fedora dir
 chown -R tomcat7:tomcat7 /opt/fedora

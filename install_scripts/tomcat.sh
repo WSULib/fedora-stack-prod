@@ -25,7 +25,7 @@ if ! grep -q "role rolename=\"fedoraAdmin\"" /etc/tomcat7/tomcat-users.xml ; the
   $i<role rolename="manager-gui"/>
   $i<user username="testuser" password="testuser" roles="fedoraUser"/>  
   $i<user username="fedoraAdmin" password="fedoraAdmin" roles="fedoraAdmin"/>
-  $i<user username="tomcat" password="tomcat" roles="manager-gui"/>' /etc/tomcat7/tomcat-users.xml
+  $i<user username="tomcat" password="tomcat" roles="manager-gui,manager-script"/>' /etc/tomcat7/tomcat-users.xml
 fi
 
 if ! grep -q "/usr/lib/jvm/java-8-oracle" /etc/default/tomcat7 ; then
