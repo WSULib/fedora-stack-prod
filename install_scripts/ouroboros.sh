@@ -65,6 +65,13 @@ cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
 supervisorctl reread
 supervisorctl update
 
+# overwrite pip installed eulfedora with WSU fork
+cd /opt
+git clone https://github.com/WSULib/eulfedora.git
+cd eulfedora
+git checkout master
+python setup.py install
+
 ######### Extra Dependencies ##########################
 # dependencies for pillow
 sudo apt-get -y install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
