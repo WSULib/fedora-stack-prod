@@ -69,8 +69,10 @@ supervisorctl update
 cd /opt
 git clone https://github.com/WSULib/eulfedora.git
 cd eulfedora
+# building and installing from 'master' branch for stability
 git checkout master
 python setup.py install
+chown -R vagrant /opt/eulfedora
 
 ######### Extra Dependencies ##########################
 # dependencies for pillow
