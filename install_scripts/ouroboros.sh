@@ -74,6 +74,9 @@ git checkout master
 python setup.py install
 chown -R vagrant /opt/eulfedora
 
+# finally, create symlink to repocopy
+ln -s /opt/eulfedora/scripts/repo-cp /opt/ouroboros/inc/repocp.py
+
 ######### Extra Dependencies ##########################
 # dependencies for pillow
 sudo apt-get -y install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev liblcms2-dev libwebp-dev tcl8.6-dev tk8.6-dev python-tk
