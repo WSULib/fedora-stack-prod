@@ -43,5 +43,5 @@ crontab -l | { cat; echo "#0,30 * * * * cd /var/opt/digitalcollections_utilities
 sudo pip install pyPdf
 
 sudo cp $SHARED_DIR/downloads/utilities/apesmit-0.01.tar.gz /tmp/
-tar -xvf apesmit-0.01.tar.gz
+tar -xvf /tmp/apesmit-0.01.tar.gz
 sudo python /tmp/apesmit-0.01/setup.py install
