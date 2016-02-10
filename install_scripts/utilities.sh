@@ -18,12 +18,10 @@ fi
 mkdir /opt/utilities
 
 cd /opt/utilities
-git clone https://github.com/WSULib/ichabod.git
 git clone https://github.com/WSULib/POTDemailer.git
 git clone https://github.com/WSULib/SWORD2DC.git
 git clone https://github.com/WSULib/digital-collections-sitemaps.git
 git clone https://github.com/WSULib/dc2Solr.git
-git clone https://github.com/WSULib/dcArchive2Solr.git
 
 
 # Write cronjobs
@@ -36,8 +34,6 @@ crontab -l | { cat; echo "# Emails authors for DigitalCommons@WayneState's "Pape
 crontab -l | { cat; echo "#0 12    * * *      cd /var/opt/digitalcommons_utilities/POTDemailer && python POTDemailer.py >/dev/null 2>&1"; } | crontab -
 crontab -l | { cat; echo "# Runs script to update sitemaps for Google crawler"; } | crontab -
 crontab -l | { cat; echo "#0 0    * * 0      cd /var/opt/solr_utilities/digital-collections-sitemaps && python digital-collections-sitemaps.py >/dev/null 2>&1"; } | crontab -
-crontab -l | { cat; echo "# Runs ichabod page checker, hourly"; } | crontab -
-crontab -l | { cat; echo "#0,30 * * * * cd /var/opt/digitalcollections_utilities/ichabod && python main.py check"; } | crontab -
 
 # Install Dependencies
 sudo pip install pyPdf
