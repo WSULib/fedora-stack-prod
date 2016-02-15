@@ -38,11 +38,10 @@ chown -R www-data:www-data /var/www/wsuls/eTextReader
 # index all documents in Fedora to Solr, specifically to power front-end
 # assumes Fedora, Solr, and Ouroboros are up and operational
 curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
-curl "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/replicateStagingToProduction"
 
 # set robots and google site verification
-cp $SHARED_DIR/front_end/google288f165e0ae3f823.html /var/www/wsuls/
-cp $SHARED_DIR/front_end/robots.txt /var/www/wsuls/
+cp $SHARED_DIR/downloads/front_end/google288f165e0ae3f823.html /var/www/wsuls/
+cp $SHARED_DIR/downloads/front_end/robots.txt /var/www/wsuls/
 
 chown root:root robots.txt google288f165e0ae3f823.html
 chmod 644 robots.txt google288f165e0ae3f823.html
