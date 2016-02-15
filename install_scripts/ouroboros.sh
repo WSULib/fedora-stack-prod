@@ -71,6 +71,7 @@ git clone https://github.com/WSULib/eulfedora.git
 cd eulfedora
 # building and installing from 'master' branch for stability
 git checkout master
+pip install -e .
 python setup.py install
 chown -R vagrant /opt/eulfedora
 
