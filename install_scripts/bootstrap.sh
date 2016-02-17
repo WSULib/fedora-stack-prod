@@ -27,6 +27,9 @@ apt-get -y install build-essential
 # Python essentials
 apt-get -y install libxml2-dev libxslt1-dev python-dev python-setuptools
 
+# Install pip
+sudo easy_install pip
+
 # Git vim
 apt-get -y install git vim
 

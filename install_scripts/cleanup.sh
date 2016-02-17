@@ -29,3 +29,6 @@ cp $SHARED_DIR/config/cleanup/index.php /var/www/wsuls/
 
 # python progressbar for repo-cp
 pip install progressbar
+
+# Cleanup unneeded packages
+sudo apt-get -y autoremove

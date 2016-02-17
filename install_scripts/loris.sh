@@ -16,10 +16,10 @@ fi
 #################################################################
 
 # dependencies
-sudo apt-get -y install python-pip python-setuptools
+sudo apt-get -y install python-setuptools
 
 printf "\n" | sudo pip uninstall PIL
-printf "\n" | sudo pip uninstall Pillow
+printf "y \n" | sudo pip uninstall Pillow
 sudo apt-get purge python-imaging
 
 sudo apt-get -y install libjpeg-turbo8-dev libfreetype6-dev zlib1g-dev \

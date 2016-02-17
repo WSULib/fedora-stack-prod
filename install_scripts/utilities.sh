@@ -39,5 +39,7 @@ crontab -l | { cat; echo "#0 0    * * 0      cd /var/opt/solr_utilities/digital-
 sudo pip install pyPdf
 
 sudo cp $SHARED_DIR/downloads/utilities/apesmit-0.01.tar.gz /tmp/
-tar -xvf /tmp/apesmit-0.01.tar.gz
-sudo python /tmp/apesmit-0.01/setup.py install
+cd /tmp/
+sudo tar -xvf /tmp/apesmit-0.01.tar.gz
+cd /tmp/apesmit-0.01/
+sudo python setup.py install
