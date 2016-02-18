@@ -30,6 +30,12 @@ apt-get -y install libxml2-dev libxslt1-dev python-dev python-setuptools
 # Install pip
 sudo easy_install pip
 
+# Remove the apt-get installed requests and Install requests with pip
+sudo apt-get -y purge python-requests
+sudo pip install requests
+# Remove the apt-get installed simplejson. It will be installed later on with pip
+sudo apt-get -y purge python-simplejson
+
 # Git vim
 apt-get -y install git vim
 
