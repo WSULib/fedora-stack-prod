@@ -36,6 +36,22 @@ apt-get -y install libxml2-dev libxslt1-dev python-dev python-mysqldb python-lxm
 # python modules
 pip install -r requirements.txt
 
+################################## eulfedora important ###################
+### eulfedora MUST be installed before Ouroboros is started 
+#### Ouroboros will NOT run without this branch of eulfedora
+
+# overwrite pip installed eulfedora with WSU fork
+cd /opt
+git clone https://github.com/WSULib/eulfedora.git
+cd eulfedora
+# building and installing from 'develop' branch for development
+git checkout wsudor_develop
+pip install -e .
+python setup.py install
+chown -R vagrant /opt/eulfedora
+###########################################################################
+
+cd /opt/ouroboros
 # other applications
 # redis
 apt-get -y install redis-server
@@ -64,19 +80,6 @@ cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
 cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
 supervisorctl reread
 supervisorctl update
-
-# overwrite pip installed eulfedora with WSU fork
-cd /opt
-git clone https://github.com/WSULib/eulfedora.git
-cd eulfedora
-# building and installing from 'master' branch for stability
-git checkout master
-pip install -e .
-python setup.py install
-chown -R vagrant /opt/eulfedora
-
-# finally, create symlink to repocopy
-ln -s /opt/eulfedora/scripts/repo-cp /opt/ouroboros/inc/repocp.py
 
 ######### Extra Dependencies ##########################
 # dependencies for pillow
