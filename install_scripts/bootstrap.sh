@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "---- Bootstrapping ------------------------------------------------"
 
 #### GET ENVARS #################################################
@@ -30,11 +30,33 @@ apt-get -y install libxml2-dev libxslt1-dev python-dev python-setuptools
 # Install pip
 sudo easy_install pip
 
-# Remove the apt-get installed requests and Install requests with pip
-sudo apt-get -y purge python-requests
-sudo pip install requests
-# Remove the apt-get installed simplejson. It will be installed later on with pip
-sudo apt-get -y purge python-simplejson
+# Install zlib
+sudo apt-get -y install zlib1g-dev
+
+# Remove python-six in order to allow pip to install the most up-to-date version of six
+sudo apt-get -y purge python-six
+
+# Install virtualenv and wrappers
+pip install virtualenv virtualenvwrapper
+mkdir /usr/local/lib/venvs
+sudo chown :admin /usr/local/lib/venvs
+echo "WORKON_HOME=/usr/local/lib/venvs" >> /etc/environment
+echo "# Added for virtualenvwrapper" >> /etc/bash.bashrc
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> /etc/bash.bashrc
+
+# Set virtualenv variables and source file to work in current session
+WORKON_HOME=/usr/local/lib/venvs
+source /usr/local/bin/virtualenvwrapper.sh
+# Create a global environment and a test environment
+mkvirtualenv global
+
+# Install ipython on global
+workon global
+pip install ipython
+deactivate
+
+mkvirtualenv develop
+sudo chown -R :admin /usr/local/lib/venvs
 
 # Git vim
 apt-get -y install git vim
@@ -55,6 +77,17 @@ apt-get -y install multitail
 echo "multitail /var/log/apache2/$VM_NAME-access.log /var/log/apache2/$VM_NAME-error.log /var/log/tomcat7/catalina.out /var/log/ouroboros.err.log /var/log/celery.err.log /opt/fedora/server/logs/fedora.log" > /usr/bin/alltails
 chmod +x /usr/bin/alltails
 
-# Create Users
+# CREATE USERS
+#########################################################
+
+#admin-ify vagrant
+usermod -a -G admin vagrant
+
+# Create loris user
 useradd -m -s /bin/bash loris
 echo loris:password | chpasswd
+
+# Create ouroboros user
+useradd -m -s /bin/bash ouroboros
+usermod -a -G admin ouroboros
+echo ouroboros:ouroboros | chpasswd
