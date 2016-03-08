@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "---- Installing Ouroboros ------------------------------------------------"
 
 #### GET ENVARS #################################################
@@ -19,6 +19,13 @@ if [ ! -d $OUROBOROS_HOME ]; then
   mkdir $OUROBOROS_HOME
 fi
 
+# Make virtualenv
+WORKON_HOME=/usr/local/lib/venvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+mkvirtualenv ouroboros
+workon ouroboros
+
 # change to dir
 cd /opt
 
@@ -31,27 +38,16 @@ cp $SHARED_DIR/downloads/ouroboros/*.php /usr/lib/cgi-bin
 chown -R www-data:www-data /usr/lib/cgi-bin
 
 # install system dependencies
-apt-get -y install libxml2-dev libxslt1-dev python-dev python-mysqldb python-lxml libldap2-dev libsasl2-dev libjpeg-dev pdftk imagemagick
+apt-get -y install libxml2-dev libxslt1-dev python-dev libldap2-dev libsasl2-dev libjpeg-dev pdftk imagemagick
+apt-get -y build-dep python-mysqldb
+
+# for python virtualenv
+pip install MySQL-python lxml
 
 # python modules
 pip install -r requirements.txt
 
-################################## eulfedora important ###################
-### eulfedora MUST be installed before Ouroboros is started 
-#### Ouroboros will NOT run without this branch of eulfedora
 
-# overwrite pip installed eulfedora with WSU fork
-cd /opt
-git clone https://github.com/WSULib/eulfedora.git
-cd eulfedora
-# building and installing from 'develop' branch for development
-git checkout wsudor_develop
-pip install -e .
-python setup.py install
-chown -R vagrant /opt/eulfedora
-###########################################################################
-
-cd /opt/ouroboros
 # other applications
 # redis
 apt-get -y install redis-server
@@ -60,6 +56,17 @@ apt-get -y install redis-server
 cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
 sed -i "s/APP_HOST_PLACEHOLDER/$VM_HOST/g" /opt/ouroboros/localConfig.py
 
+cd /opt
+# install eulfedora with WSU fork
+git clone https://github.com/WSULib/eulfedora.git
+chown -R ouroboros:admin /opt/eulfedora
+cd eulfedora
+workon ouroboros
+python setup.py install
+pip install -e .
+
+# Finish Ouroboros configuration
+cd /opt/ouroboros
 # create MySQL database, users, tables, then populate
 echo "creating MySQL database, users, and tables"
 mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_create.sql
@@ -69,11 +76,19 @@ db.create_all()
 EOF
 mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_populate.sql
 
-# scaffold (NEEDS ATTEBNTION)
+# scaffold
+chown -R ouroboros:admin /opt/ouroboros
+
 mkdir /tmp/Ouroboros
 mkdir /tmp/Ouroboros/ingest_workspace
+chown -R ouroboros:admin /tmp/Ouroboros/
+
 mkdir /var/www/wsuls/Ouroboros
 mkdir /var/www/wsuls/Ouroboros/export/
+chown -R ouroboros:admin /var/www/wsuls/Ouroboros
+
+mkdir /var/run/ouroboros
+chown -R ouroboros:admin /var/run/ouroboros
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
@@ -87,6 +102,10 @@ sudo apt-get -y install libtiff5-dev libjpeg8-dev zlib1g-dev libfreetype6-dev li
 # reinstall pillow
 sudo pip install --upgrade pillow
 
+# stop virtualenv
+sudo chown -R :admin /usr/local/lib/venvs/ouroboros
+deactivate
+echo "deactivating virtualenv"
 
 
 
