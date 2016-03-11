@@ -64,6 +64,7 @@ cd eulfedora
 workon ouroboros
 python setup.py install
 pip install -e .
+chown -R ouroboros:admin /opt/eulfedora
 
 # Finish Ouroboros configuration
 cd /opt/ouroboros
