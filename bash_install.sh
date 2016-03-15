@@ -32,20 +32,20 @@ sudo apt-get -y install sshfs
 sshfs -o idmap=user -o follow_symlinks -o nonempty vagrantworker@141.217.54.96:/home/vagrantworker/vms/fedora-stack-prod/downloads/ /vagrant/downloads/
 
 # Run provisioners
-source ./install_scripts/bootstrap.sh
-source ./install_scripts/lamp.sh
-source ./install_scripts/java.sh
-source ./install_scripts/tomcat.sh
-source ./install_scripts/solr.sh
-source ./install_scripts/fedora.sh
-source ./install_scripts/oaiprovider.sh
-source ./install_scripts/supervisor.sh
-source ./install_scripts/kakadu.sh
-source ./install_scripts/ouroboros.sh
-source ./install_scripts/front_end.sh
-source ./install_scripts/loris.sh
-source ./install_scripts/utilities.sh
-source ./install_scripts/cleanup.sh
+source $DIR/install_scripts/bootstrap.sh
+source $DIR/install_scripts/lamp.sh
+source $DIR/install_scripts/java.sh
+source $DIR/install_scripts/tomcat.sh
+source $DIR/install_scripts/solr.sh
+source $DIR/install_scripts/fedora.sh
+source $DIR/install_scripts/oaiprovider.sh
+source $DIR/install_scripts/supervisor.sh
+source $DIR/install_scripts/kakadu.sh
+source $DIR/install_scripts/ouroboros.sh
+source $DIR/install_scripts/front_end.sh
+source $DIR/install_scripts/loris.sh
+source $DIR/install_scripts/utilities.sh
+source $DIR/install_scripts/cleanup.sh
 
 
 # unmount sshfs dir
