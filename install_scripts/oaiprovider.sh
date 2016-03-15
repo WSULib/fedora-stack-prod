@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "---- Installing OAIProvider for Fedora Commons ------------------------------------------------"
 
 #### GET ENVARS #################################################
