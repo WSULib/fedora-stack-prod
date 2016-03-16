@@ -1,10 +1,21 @@
 #!/bin/bash
 
-# CHECK USER #
+#### CHECK USER #################################################
 if [ "$(id -u)" != "0" ]; then
    echo "This script must be run as root" 1>&2
    exit 1
 fi
+#################################################################
+
+#### CHECK FOR ENVVARS #################################################
+FILE=./config/envvars
+
+if [ ! -f "$FILE" ]
+then
+    echo "$FILE does not exist. Please consult ./config/envvars.default to build it." 1>&2
+    exit 1
+fi
+#################################################################
 
 #### GET ENVARS #################################################
 # make a symbolic link from current directory to /vagrant
