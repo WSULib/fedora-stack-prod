@@ -6,7 +6,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # options are documented and commented below. For a complete reference,
   # please see the online documentation at vagrantup.com.
   
-  config.vm.hostname = "fedora-stack-workdev"
+  config.vm.hostname = "fedora-stack-prod"
 
   config.vm.box = "ubuntu/trusty64"
 
