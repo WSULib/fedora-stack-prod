@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 echo "---- Cleanup ------------------------------------------------"
 
 #### GET ENVARS #################################################
@@ -18,5 +18,16 @@ fi
 # copy apache / info file
 cp $SHARED_DIR/config/cleanup/index.php /var/www/wsuls/
 
-# python progressbar for repo-cp
-pip install progressbar
+# turn on virtualenv
+WORKON_HOME=/usr/local/lib/venvs
+source /usr/local/bin/virtualenvwrapper.sh
+workon ouroboros
+
+# index all documents in Fedora to Solr, specifically to power front-end
+# assumes Fedora, Solr, and Ouroboros are up and operational
+curl --data "choice=confirm&confirm_string=confirm" "http://$VM_HOST:$OUROBOROS_PORT/tasks/updateSolr/purgeAndFullIndex"
+
+deactivate
+
+# Cleanup unneeded packages
+sudo apt-get -y autoremove
