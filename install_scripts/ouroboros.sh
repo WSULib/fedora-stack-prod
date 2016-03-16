@@ -91,6 +91,9 @@ chown -R ouroboros:admin /var/www/wsuls/Ouroboros
 mkdir /var/run/ouroboros
 chown -R ouroboros:admin /var/run/ouroboros
 
+# copy rc.local
+cp $SHARED_DIR/downloads/ouroboros/rc.local /etc
+
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
 cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
