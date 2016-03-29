@@ -15,8 +15,8 @@ fedora-stack-prod
   (if needed) sudo apt-get -y install git
   git clone https://github.com/WSULib/fedora-stack-prod.git
   cd fedora-stack-prod
-  git checkout development
   Running as root, run ./bash_install.sh
+  Prompted to edit /etc/hosts file: enter VM_NAME from envars on same line as IP
   Supply the appropriate password when prompted
   When installing Java, hit enter when prompted
   ```
