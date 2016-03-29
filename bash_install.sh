@@ -19,7 +19,7 @@ fi
 
 #### GET ENVARS #################################################
 # set flag identifying that this is a non-vagrant install
-NOT_VAGRANT=true
+NON_VAGRANT=true
 # make a symbolic link from current directory to /vagrant
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 sudo ln -s $DIR /vagrant
