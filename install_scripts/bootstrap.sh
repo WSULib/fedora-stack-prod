@@ -80,6 +80,10 @@ apt-get -y install multitail
 echo "multitail /var/log/apache2/$VM_NAME-access.log /var/log/apache2/$VM_NAME-error.log /var/log/tomcat7/catalina.out /var/log/ouroboros.err.log /var/log/celery.err.log /opt/fedora/server/logs/fedora.log" > /usr/bin/alltails
 chmod +x /usr/bin/alltails
 
+# UPDATE NETWORKING
+#########################################################
+vim /etc/hosts
+
 # CREATE USERS
 #########################################################
 
