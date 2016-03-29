@@ -23,9 +23,6 @@ FEDORA_3_8="http://sourceforge.net/projects/fedora-commons/files/fedora/3.8.1/fc
 FEDORA_3_6="http://sourceforge.net/projects/fedora-commons/files/fedora/3.6.2/fcrepo-installer-3.6.2.jar/download"
 
 # Create MySQL DB
-mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/fedora/fedora_mysql_db_create.sql
-
-# Create MySQL DB
 cp $SHARED_DIR/downloads/fedora/fedora_mysql_db_create.sql /tmp/fedora_mysql_db_create.sql
 sed -i "s/FEDORA_MYSQL_USERNAME/$FEDORA_MYSQL_USERNAME/g" /tmp/fedora_mysql_db_create.sql
 sed -i "s/FEDORA_MYSQL_PASSWORD/$FEDORA_MYSQL_PASSWORD/g" /tmp/fedora_mysql_db_create.sql
