@@ -21,6 +21,9 @@ apt-get -y update && apt-get -y upgrade
 # SSH
 apt-get -y install openssh-server
 
+# create admin group
+groupadd admin
+
 # Build tools
 apt-get -y install build-essential
 
@@ -89,5 +92,5 @@ echo loris:password | chpasswd
 
 # Create ouroboros user
 useradd -m -s /bin/bash ouroboros
-usermod -a -G admin ouroboros
+usermod -g admin ouroboros
 echo ouroboros:ouroboros | chpasswd
