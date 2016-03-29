@@ -58,6 +58,8 @@ apt-get -y install redis-server
 # copy ouroboros's localConfig and replace host info
 cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
 sed -i "s/APP_HOST_PLACEHOLDER/$VM_HOST/g" /opt/ouroboros/localConfig.py
+sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /opt/ouroboros/localConfig.py
+sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /opt/ouroboros/localConfig.py
 
 cd /opt
 # install eulfedora with WSU fork
