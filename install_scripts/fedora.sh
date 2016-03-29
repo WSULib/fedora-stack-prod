@@ -29,6 +29,8 @@ mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/fedora/fedora
 cp $SHARED_DIR/downloads/fedora/install.properties /tmp/install.properties
 sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /tmp/install.properties
 sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /tmp/install.properties
+sed -i "s/FEDORA_MYSQL_USERNAME/$FEDORA_MYSQL_USERNAME/g" /tmp/install.properties
+sed -i "s/FEDORA_MYSQL_PASSWORD/$FEDORA_MYSQL_PASSWORD/g" /tmp/install.properties
 java -jar $SHARED_DIR/downloads/fedora/fcrepo-installer-3.8.1.jar $SHARED_DIR/downloads/fedora/install.properties
 
 # copy custom fedora.fcfg and replace values
@@ -36,6 +38,8 @@ cp /opt/fedora/server/config/fedora.fcfg /opt/fedora/server/config/fedora.fcfg.B
 cp $SHARED_DIR/downloads/fedora/fedora.fcfg /opt/fedora/server/config
 sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /opt/fedora/server/config/fedora.fcfg
 sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /opt/fedora/server/config/fedora.fcfg
+sed -i "s/FEDORA_MYSQL_USERNAME/$FEDORA_MYSQL_USERNAME/g" /opt/fedora/server/config/fedora.fcfg
+sed -i "s/FEDORA_MYSQL_PASSWORD/$FEDORA_MYSQL_PASSWORD/g" /opt/fedora/server/config/fedora.fcfg
 sed -i "s/FEDORA_SERVER_HOST/$VM_HOST/g" /opt/fedora/server/config/fedora.fcfg
 
 # chown fedora dir
