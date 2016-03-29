@@ -25,12 +25,17 @@ FEDORA_3_6="http://sourceforge.net/projects/fedora-commons/files/fedora/3.6.2/fc
 # Create MySQL DB
 mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/fedora/fedora_mysql_db_create.sql
 
-# Installation
+# Installation (copy and sed in the install.properties)
+cp $SHARED_DIR/downloads/fedora/install.properties /tmp/install.properties
+sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /tmp/install.properties
+sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /tmp/install.properties
 java -jar $SHARED_DIR/downloads/fedora/fcrepo-installer-3.8.1.jar $SHARED_DIR/downloads/fedora/install.properties
 
 # copy custom fedora.fcfg and replace values
 cp /opt/fedora/server/config/fedora.fcfg /opt/fedora/server/config/fedora.fcfg.BACKUP
 cp $SHARED_DIR/downloads/fedora/fedora.fcfg /opt/fedora/server/config
+sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /opt/fedora/server/config/fedora.fcfg
+sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /opt/fedora/server/config/fedora.fcfg
 sed -i "s/FEDORA_SERVER_HOST/$VM_HOST/g" /opt/fedora/server/config/fedora.fcfg
 
 # chown fedora dir
