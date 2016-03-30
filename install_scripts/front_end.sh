@@ -27,12 +27,14 @@ service apache2 restart
 cd /var/www/wsuls
 git clone https://github.com/WSUlib/digitalcollections.git
 cp $SHARED_DIR/downloads/front_end/digitalcollections/* /var/www/wsuls/digitalcollections/config
+sed -i "s/VM_HOST/$VM_HOST/g" /var/www/wsuls/digitalcollections/config/*
 chown -R www-data:admin /var/www/wsuls/digitalcollections
 
 # pull in eTextReader
 git clone https://github.com/WSUlib/eTextReader.git
 chown -R www-data:www-data /var/www/wsuls/eTextReader
 cp $SHARED_DIR/downloads/front_end/eTextReader/* /var/www/wsuls/eTextReader/config
+sed -i "s/VM_HOST/$VM_HOST/g" /var/www/wsuls/eTextReader/config/*
 chown -R www-data:admin /var/www/wsuls/eTextReader
 
 # index all documents in Fedora to Solr, specifically to power front-end
