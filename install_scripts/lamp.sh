@@ -51,8 +51,11 @@ service apache2 restart
 # Copy sites-available and find/replace env variables from envvars
 rm /etc/apache2/sites-available/000-default.conf
 cp -R $SHARED_DIR/downloads/apache2/sites-available/* /etc/apache2/sites-available
-sed -i "s/VM_HOST_PLACEHOLDER/$VM_HOST/g" /etc/apache2/sites-available/000-default.conf
-sed -i "s/VM_NAME_PLACEHOLDER/$VM_NAME/g" /etc/apache2/sites-available/000-default.conf
+sed -i "s/VM_HOST_PLACEHOLDER/$VM_HOST/g" /etc/apache2/sites-available/*
+sed -i "s/VM_NAME_PLACEHOLDER/$VM_NAME/g" /etc/apache2/sites-available/*
+
+# Copy SSL certs
+cp -R $SHARED_DIR/downloads/apache2/sites-available/certs /root/cert
 
 # Set IP addr and networking info
 # cp /vagrant/downloads/apache2/interfaces /etc/network/interfaces
@@ -66,15 +69,10 @@ cp $SHARED_DIR/downloads/apache2/hostname /etc/hostname
 # Restart networking for hostname
 sudo service hostname restart
 
-# Restart networking
-# sudo service network restart
-
 # Make wsuls directory
 mkdir /var/www/wsuls
 
 # enable all sites
-# a2ensite digital.library.wayne.edu.conf
-# a2ensite silo.lib.wayne.edu.conf
+a2ensite 000-default-ssl.conf
 a2ensite 000-default.conf
-
 service apache2 restart
