@@ -73,6 +73,6 @@ sudo service hostname restart
 mkdir /var/www/wsuls
 
 # enable all sites
-a2ensite 000-default-ssl.conf
+# a2ensite 000-default-ssl.conf
 a2ensite 000-default.conf
 service apache2 restart
