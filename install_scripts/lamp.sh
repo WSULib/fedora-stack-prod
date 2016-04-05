@@ -55,7 +55,7 @@ sed -i "s/VM_HOST_PLACEHOLDER/$VM_HOST/g" /etc/apache2/sites-available/*
 sed -i "s/VM_NAME_PLACEHOLDER/$VM_NAME/g" /etc/apache2/sites-available/*
 
 # Copy SSL certs
-cp -R $SHARED_DIR/downloads/apache2/sites-available/certs /root/cert
+cp -R $SHARED_DIR/downloads/apache2/certs /root/cert
 
 # Set IP addr and networking info
 # cp /vagrant/downloads/apache2/interfaces /etc/network/interfaces
