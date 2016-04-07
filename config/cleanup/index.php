@@ -24,7 +24,7 @@
 			<li><a target="_blank" href="http://<?php echo $VM_HOST; ?>/fedora/admin">Fedora Commons Admin</a></li>
 			<li><a target="_blank" href="http://<?php echo $VM_HOST; ?>/fedora/risearch">Fedora Commons Risearch</a></li>
 			<li><a target="_blank" href="http://<?php echo $VM_HOST; ?>/solr4">Solr</a></li>
-			<li><a target="_blank" href="http://<?php echo $VM_HOST; ?>:5004">Ouroboros</a></li>
+			<li><a target="_blank" href="http://<?php echo $VM_HOST; ?>/ouroboros">Ouroboros</a></li>
 			<li><a target="_blank" href="http://<?php echo $VM_HOST; ?>/digitalcollections">Digital Collections Front-End</a></li>
 		</ul>
 
