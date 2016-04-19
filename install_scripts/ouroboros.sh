@@ -80,7 +80,6 @@ ipython <<EOF
 from console import *
 db.create_all()
 EOF
-mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_populate.sql
 
 # scaffold
 chown -R ouroboros:admin /opt/ouroboros
