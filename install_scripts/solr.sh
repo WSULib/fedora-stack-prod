@@ -16,7 +16,7 @@ fi
 #################################################################
 
 printf "Downloading Solr"
-# wget "http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"
+wget -P $SHARED_DIR/downloads/solr/ "http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"
 
 cd /tmp
 cp $SHARED_DIR/downloads/solr/solr-$SOLR_VERSION.tgz /tmp
