@@ -15,9 +15,13 @@ else
 fi
 #################################################################
 
-printf "Downloading Solr"
-wget -P $SHARED_DIR/downloads/solr/ "http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"
-
+printf "Acquiring and Installing Solr"
+if [ -f $SHARED_DIR/downloads/solr/solr-$SOLR_VERSION.tgz ]; then
+	echo "Solr file exists, skipping download..."
+else
+	echo "Solr file does not exist, downloading..."
+	wget -P $SHARED_DIR/downloads/solr/ "http://archive.apache.org/dist/lucene/solr/$SOLR_VERSION/solr-$SOLR_VERSION.tgz"
+fi
 cd /tmp
 cp $SHARED_DIR/downloads/solr/solr-$SOLR_VERSION.tgz /tmp
 echo "Extracting Solr"
