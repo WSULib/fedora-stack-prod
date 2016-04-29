@@ -29,5 +29,11 @@ curl --data "choice=confirm&confirm_string=confirm" "http://$VM_HOST:$OUROBOROS_
 
 deactivate
 
+# Set Ouroboros permissions on ouroboros venv
+chown -R ouroboros:admin /usr/local/lib/venvs/ouroboros
+
+# Set Loris permissions on loris venv
+chown -R loris:admin /usr/local/lib/venvs/loris
+
 # Cleanup unneeded packages
 sudo apt-get -y autoremove
