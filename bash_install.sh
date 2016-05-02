@@ -38,9 +38,6 @@ else
 fi
 #################################################################
 
-# Setup before provisioning
-sudo apt-get -y install sshfs
-
 # Run provisioners
 source $DIR/install_scripts/bootstrap.sh
 source $DIR/install_scripts/lamp.sh
