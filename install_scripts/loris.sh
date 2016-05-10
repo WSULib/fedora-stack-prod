@@ -26,7 +26,7 @@ sudo apt-get -y install python-setuptools
 
 printf "\n" | sudo pip uninstall PIL
 printf "y \n" | sudo pip uninstall Pillow
-sudo apt-get purge python-imaging
+sudo apt-get -y purge python-imaging
 
 sudo apt-get -y install libjpeg-turbo8-dev libfreetype6-dev zlib1g-dev \
 liblcms2-dev liblcms-utils libtiff5-dev python-dev libwebp-dev apache2 \
@@ -35,7 +35,7 @@ libapache2-mod-wsgi
 printf "\n" | sudo pip install Pillow
 
 # clone repo and install
-cd /tmp
+cd /var/lib
 git clone https://github.com/WSULib/loris.git
 
 # install
@@ -60,9 +60,23 @@ chown -R loris:loris /var/log/loris2
 sudo chown -R :admin /usr/local/lib/venvs/loris
 deactivate
 
+# cache management script as cron job
+# Uses custom cache cleaning script with hardcoded directories and 5gb limit
+cp $SHARED_DIR/downloads/loris/loris-http_cache_clean.ssh /var/lib/loris/bin/loris-http_cache_clean.sh
+su loris
+(crontab -l 2>/dev/null; echo "*/1 * * * * /var/lib/loris/bin/loris-http_cache_clean.sh") | crontab -
+exit # jumps out of loris user
+
+# chown dirs
+chown -R loris:admin /var/lib/loris
+chown -R loris:admin /var/cache/loris2
+
 # restart apache2
 echo "restarting apache"
 service apache2 restart
 
 # checkin install
 curl localhost/loris
+
+
+

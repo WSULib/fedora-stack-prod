@@ -17,5 +17,12 @@ fi
 
 # apt-get install 
 apt-get -y install supervisor
-service supervisor restart
 
+# copy custom supervisor.conf file
+cp $SHARED_DIR/config/ouroboros/supervisord.conf /etc/supervisor/
+
+# chown supervisor directory for ouroboros
+chown -R ouroboros:admin /etc/supervisor
+
+# restart
+service supervisor restart

@@ -22,15 +22,12 @@ fi
 # Make virtualenv
 WORKON_HOME=/usr/local/lib/venvs
 source /usr/local/bin/virtualenvwrapper.sh
-
 mkvirtualenv ouroboros
 workon ouroboros
 
-# change to dir
+# clone Ouroboros repository
 cd /opt
-
-# clone repository
-git clone https://github.com/WSUlib/ouroboros.git
+git clone https://github.com/WSULib/ouroboros.git
 cd ouroboros
 
 # fire ouroboros_assets
@@ -50,7 +47,6 @@ pip install MySQL-python lxml
 # python modules
 pip install -r requirements.txt
 
-
 # other applications
 # redis
 apt-get -y install redis-server
@@ -58,8 +54,6 @@ apt-get -y install redis-server
 # copy ouroboros's localConfig and replace host info
 cp $SHARED_DIR/downloads/ouroboros/localConfig.py /opt/ouroboros/localConfig.py
 sed -i "s/APP_HOST_PLACEHOLDER/$VM_HOST/g" /opt/ouroboros/localConfig.py
-sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /opt/ouroboros/localConfig.py
-sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /opt/ouroboros/localConfig.py
 
 cd /opt
 # install eulfedora with WSU fork
@@ -71,6 +65,14 @@ python setup.py install
 pip install -e .
 chown -R ouroboros:admin /opt/eulfedora
 
+# install artecfactual mets-reader-writer library (metsrw)
+cd /opt
+git clone https://github.com/WSULib/mets-reader-writer.git
+chown -R ouroboros:admin /opt/mets-reader-writer
+cd mets-reader-writer
+workon ouroboros
+python setup.py install
+
 # Finish Ouroboros configuration
 cd /opt/ouroboros
 # create MySQL database, users, tables, then populate
@@ -80,7 +82,6 @@ ipython <<EOF
 from console import *
 db.create_all()
 EOF
-mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_populate.sql
 
 # scaffold
 chown -R ouroboros:admin /opt/ouroboros
@@ -102,7 +103,6 @@ cp $SHARED_DIR/downloads/ouroboros/rc.local /etc
 
 # copy Ouroboros and Celery conf to supervisor dir, reread, update (automatically starts then)
 cp $SHARED_DIR/config/ouroboros/ouroboros.conf /etc/supervisor/conf.d/
-cp $SHARED_DIR/config/ouroboros/celery.conf /etc/supervisor/conf.d/
 supervisorctl reread
 supervisorctl update
 
@@ -116,6 +116,5 @@ sudo pip install --upgrade pillow
 sudo chown -R :admin /usr/local/lib/venvs/ouroboros
 deactivate
 echo "deactivating virtualenv"
-
 
 
