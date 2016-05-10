@@ -38,12 +38,6 @@ else
 fi
 #################################################################
 
-# Setup before provisioning
-sudo apt-get -y install sshfs
-
-# Mount downloads folder for provisioners
-sshfs -o idmap=user -o follow_symlinks -o nonempty vagrantworker@141.217.54.96:/home/vagrantworker/vms/fedora-stack-prod/downloads/ /vagrant/downloads/
-
 # Run provisioners
 source $DIR/install_scripts/bootstrap.sh
 source $DIR/install_scripts/lamp.sh
@@ -61,8 +55,6 @@ source $DIR/install_scripts/utilities.sh
 source $DIR/install_scripts/cleanup.sh
 
 
-# unmount sshfs dir
-fusermount -u $DIR/downloads
 # remove symlink
 sudo unlink /vagrant
 

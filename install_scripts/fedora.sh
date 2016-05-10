@@ -16,11 +16,19 @@ fi
 #################################################################
 
 # Downloads (currently in downloads dir for dev)
-# 3.8
-FEDORA_3_8="http://sourceforge.net/projects/fedora-commons/files/fedora/3.8.1/fcrepo-installer-3.8.1.jar/download"
 
-# 3.6.2
-FEDORA_3_6="http://sourceforge.net/projects/fedora-commons/files/fedora/3.6.2/fcrepo-installer-3.6.2.jar/download"
+# 3.8
+printf "Acquring Fedora Commons 3.8"
+FEDORA_VERSION=3.8.1
+FEDORA_3_8="https://github.com/fcrepo3/fcrepo/releases/download/v3.8.1/fcrepo-installer-3.8.1.jar"
+# FEDORA_3_8_ALT="http://sourceforge.net/projects/fedora-commons/files/fedora/3.8.1/fcrepo-installer-3.8.1.jar/download"
+
+if [ -f $SHARED_DIR/downloads/fedora/fcrepo-installer-$FEDORA_VERSION.jar ]; then
+  echo "Fedora jar file exists, skipping download..."
+else
+  echo "Fedora jar file does not exist, downloading..."
+  wget -P $SHARED_DIR/downloads/fedora/ $FEDORA_3_8
+fi
 
 # Create MySQL DB
 cp $SHARED_DIR/downloads/fedora/fedora_mysql_db_create.sql /tmp/fedora_mysql_db_create.sql
