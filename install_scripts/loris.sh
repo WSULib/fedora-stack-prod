@@ -49,15 +49,15 @@ cp $SHARED_DIR/downloads/loris/loris2.conf /etc/loris2/
 
 # copy custom wsgi file into www
 cp $SHARED_DIR/downloads/loris/loris2.wsgi /opt/loris2/loris2.wsgi
-chown loris:loris /opt/loris2/loris2.wsgi
+chown loris:admin /opt/loris2/loris2.wsgi
 chmod 755 /opt/loris2/loris2.wsgi
 
 # change ownership
-chown -R loris:loris /var/log/loris2
+chown -R loris:admin /var/log/loris2
 
 # stop virtualenv -- this should hopefully then indicate if apache is succesfully loading the loris
 # virtualenv on itself
-sudo chown -R :admin /usr/local/lib/venvs/loris
+sudo chown -R loris:admin /usr/local/lib/venvs/loris
 deactivate
 
 # cache management script as cron job
