@@ -62,10 +62,9 @@ deactivate
 
 # cache management script as cron job
 # Uses custom cache cleaning script with hardcoded directories and 5gb limit
-cp $SHARED_DIR/downloads/loris/loris-http_cache_clean.ssh /var/lib/loris/bin/loris-http_cache_clean.sh
-su loris
-(crontab -l 2>/dev/null; echo "*/1 * * * * /var/lib/loris/bin/loris-http_cache_clean.sh") | crontab -
-exit # jumps out of loris user
+cp $SHARED_DIR/downloads/loris/loris-http_cache_clean.sh /var/lib/loris/bin/loris-http_cache_clean.sh
+printf "setting cache clean cronjob"
+sudo -u loris -H sh -c '(crontab -l 2>/dev/null; echo "*/1 * * * * /var/lib/loris/bin/loris-http_cache_clean.sh") | crontab -'
 
 # chown dirs
 chown -R loris:admin /var/lib/loris
@@ -75,7 +74,7 @@ chown -R loris:admin /var/cache/loris2
 echo "restarting apache"
 service apache2 restart
 
-# checkin install
+# check install
 curl localhost/loris
 
 
