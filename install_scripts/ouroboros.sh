@@ -75,6 +75,14 @@ cd mets-reader-writer
 workon ouroboros
 python setup.py install
 
+# install jpylyzer from openpreserve
+cd /opt
+git clone https://github.com/WSULib/jpylyzer.git
+chown -R ouroboros:admin /opt/jpylyzer
+cd jpylyzer
+workon ouroboros
+python setup.py install
+
 # Finish Ouroboros configuration
 cd /opt/ouroboros
 # create MySQL database, users, tables, then populate
