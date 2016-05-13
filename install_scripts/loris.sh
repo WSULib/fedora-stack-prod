@@ -41,6 +41,8 @@ git clone https://github.com/WSULib/loris.git
 # install
 echo "installing Loris"
 cd loris
+# set upstream
+git remote add upstream https://github.com/loris-imageserver/loris
 python setup.py install --verbose --config-dir=/etc/loris2 --log-dir=/var/log/loris2 --www-dir=/opt/loris2 --kdu-expand=/usr/local/bin/kdu_expand --libkdu=/usr/local/lib  --info-cache=/var/cache/loris2 --image-cache=/var/cache/loris2
 
 # copy custom config file
@@ -68,7 +70,9 @@ sudo -u loris -H sh -c '(crontab -l 2>/dev/null; echo "*/1 * * * * /var/lib/lori
 
 # chown dirs
 chown -R loris:admin /var/lib/loris
+chmod 755 /var/lib/loris
 chown -R loris:admin /var/cache/loris2
+chmod 755 /var/cache/loris2
 
 # restart apache2
 echo "restarting apache"
