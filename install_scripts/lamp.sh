@@ -72,6 +72,9 @@ sudo service hostname restart
 # Make wsuls directory
 mkdir /var/www/wsuls
 
+# Copy custom 404 page to root
+cp $SHARED_DIR/downloads/apache2/404.html /var/www/wsuls
+
 # enable all sites
 # a2ensite 000-default-ssl.conf
 a2ensite 000-default.conf
