@@ -31,6 +31,8 @@ mkdir /var/cache/varnish
 echo "copying varnish config files"
 cp $SHARED_DIR/downloads/varnish/*.vcl /etc/varnish/
 cp $SHARED_DIR/downloads/varnish/varnish /etc/default/
+cp $SHARED_DIR/downloads/varnish/varnish_secret /home/ouroboros/
+chown ouroboros:admin /home/ouroboros/varnish_secret
 
 # restart varnish
 service varnish restart
