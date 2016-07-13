@@ -23,8 +23,11 @@ cd readux
 # use ouroboros venv
 workon ouroboros
 
-# install 
-python setup.py install
+# from deployment notes: http://readux.readthedocs.io/en/develop/deploynotes.html
+pip install fabric
+fab build
+python manage.py syncdb
+
 
 # copy config, and update hosts
 cp $SHARED_DIR/downloads/readux/localsettings.py /opt/readux/readux/localsettings.py
