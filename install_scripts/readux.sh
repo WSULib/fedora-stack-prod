@@ -28,7 +28,6 @@ python setup.py install
 
 # copy config, and update hosts
 cp $SHARED_DIR/downloads/readux/localsettings.py /opt/readux/readux/localsettings.py
-sed -i "s/APP_HOST_PLACEHOLDER/$VM_HOST/g" /opt/ouroboros/localConfig.py
 
 # install WSUDOR fork / copy of Emory's eultheme
 cd /opt
