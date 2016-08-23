@@ -5,7 +5,7 @@ fedora-stack-prod
   ```
   git clone https://github.com/WSULib/fedora-stack-prod.git
   cd fedora-stack-prod
-  mount remote downloads folder to fedora-stack-prod/downloads folder
+  unzip downloads.zip
   vagrant up
   ```
 

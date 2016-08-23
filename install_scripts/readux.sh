@@ -42,8 +42,9 @@ pip install fabric
 fab build
 python manage.py syncdb
 
-# copy config, and update hosts
+# copy config
 cp $SHARED_DIR/downloads/readux/localsettings.py /opt/readux/readux/localsettings.py
+cp $SHARED_DIR/downloads/readux/settings.py /opt/readux/readux/settings.py
 
 # install WSUDOR fork / copy of Emory's eultheme for local editing
 cd /opt
