@@ -58,8 +58,11 @@ sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /opt/ouroboros/localCo
 sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /opt/ouroboros/localConfig.py
 
 cd /opt
-# install eulfedora with WSU fork
-git clone https://github.com/WSULib/eulfedora.git
+# install eulfedora from 1.7.2 release
+wget https://github.com/emory-libraries/eulfedora/archive/1.7.2.zip
+unzip /opt/1.7.2.zip
+rm /opt/1.7.2.zip
+mv /opt/eulfedora-1.7.2 /opt/eulfedora
 chown -R ouroboros:admin /opt/eulfedora
 cd eulfedora
 workon ouroboros
