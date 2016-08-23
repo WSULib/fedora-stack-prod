@@ -43,11 +43,13 @@ source $DIR/install_scripts/bootstrap.sh
 source $DIR/install_scripts/lamp.sh
 source $DIR/install_scripts/java.sh
 source $DIR/install_scripts/tomcat.sh
+source $DIR/install_scripts/varnish.sh
 source $DIR/install_scripts/solr.sh
 source $DIR/install_scripts/fedora.sh
 source $DIR/install_scripts/oaiprovider.sh
 source $DIR/install_scripts/supervisor.sh
 source $DIR/install_scripts/kakadu.sh
+source $DIR/install_scripts/rtail.sh
 source $DIR/install_scripts/ouroboros.sh
 source $DIR/install_scripts/front_end.sh
 source $DIR/install_scripts/loris.sh
