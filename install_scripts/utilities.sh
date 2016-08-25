@@ -41,12 +41,13 @@ crontab -l | { cat; echo "# Runs script to update sitemaps for Google crawler"; 
 crontab -l | { cat; echo "#0 0    * * 0      cd /opt/utilities/digital-collections-sitemaps && /usr/local/lib/venvs/global/bin/python digital-collections-sitemaps.py >/dev/null 2>&1"; } | crontab -
 
 # Install Dependencies
-sudo pip install pyPdf
+pip install pyPdf bs4 lxml mysolr requests
 
-sudo cp $SHARED_DIR/downloads/utilities/apesmit-0.01.tar.gz /tmp/
+cp $SHARED_DIR/downloads/utilities/apesmit-0.01.tar.gz /tmp/
 cd /tmp/
 sudo tar -xvf /tmp/apesmit-0.01.tar.gz
 cd /tmp/apesmit-0.01/
-sudo python setup.py install
+chown -R ouroboros:admin /tmp/apesmit-0.01/
+python setup.py install
 
 deactivate
