@@ -80,6 +80,11 @@ apt-get -y install multitail
 echo "multitail /var/log/apache2/$VM_NAME-access.log /var/log/apache2/$VM_NAME-error.log /var/log/tomcat7/catalina.out /var/log/ouroboros.err.log /var/log/celery.err.log /opt/fedora/server/logs/fedora.log" > /usr/bin/alltails
 chmod +x /usr/bin/alltails
 
+# install postfix to handle emails
+debconf-set-selections <<< "postfix postfix/mailname string ${VM_NAME}"
+debconf-set-selections <<< "postfix postfix/main_mailer_type string 'Internet Site'"
+apt-get install -y postfix
+
 # UPDATE NETWORKING ON NON-VAGRANT INSTALLS
 #########################################################
 if [ -z ${NON_VAGRANT+x} ]; then 
