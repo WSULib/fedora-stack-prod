@@ -90,10 +90,9 @@ python setup.py install
 cd /opt/ouroboros
 # create MySQL database, users, tables, then populate
 echo "creating MySQL database, users, and tables"
-mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_create.sql
 ipython <<EOF
 from console import *
-db.create_all()
+tableWipe()
 EOF
 
 # scaffold

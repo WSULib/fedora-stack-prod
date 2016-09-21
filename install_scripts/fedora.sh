@@ -53,6 +53,19 @@ sed -i "s/FEDORA_MYSQL_USERNAME/$FEDORA_MYSQL_USERNAME/g" /opt/fedora/server/con
 sed -i "s/FEDORA_MYSQL_PASSWORD/$FEDORA_MYSQL_PASSWORD/g" /opt/fedora/server/config/fedora.fcfg
 sed -i "s/FEDORA_SERVER_HOST/$VM_HOST/g" /opt/fedora/server/config/fedora.fcfg
 
+# copy custom fedora-users.xml file and replace values
+cp /opt/fedora/server/config/fedora-users.xml /opt/fedora/server/config/fedora-users.xml.BACKUP
+cp $SHARED_DIR/downloads/fedora/fedora-users.xml /opt/fedora/server/config
+# admin
+sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /opt/fedora/server/config/fedora-users.xml
+sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /opt/fedora/server/config/fedora-users.xml
+# metadata
+sed -i "s/FEDORA_METADATA_USERNAME/$FEDORA_METADATA_USERNAME/g" /opt/fedora/server/config/fedora-users.xml
+sed -i "s/FEDORA_METADATA_PASSWORD/$FEDORA_METADATA_PASSWORD/g" /opt/fedora/server/config/fedora-users.xml
+# view
+sed -i "s/FEDORA_VIEW_USERNAME/$FEDORA_VIEW_USERNAME/g" /opt/fedora/server/config/fedora-users.xml
+sed -i "s/FEDORA_VIEW_PASSWORD/$FEDORA_VIEW_PASSWORD/g" /opt/fedora/server/config/fedora-users.xml
+
 # chown fedora dir
 chown -R tomcat7:tomcat7 /opt/fedora
 
