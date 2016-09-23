@@ -46,8 +46,9 @@ cp $SHARED_DIR/downloads/solr/$SOLR_CATALINA_CONFIG /etc/tomcat7/Catalina/localh
 
 chown -hR tomcat7:tomcat7 /etc/tomcat7/Catalina/localhost
 
+# copying pre-initialized solr cores and libraries
+echo "copying solr cores"
 cp -r $SHARED_DIR/downloads/solr/multicore $SOLR_HOME/
-
 cp -r $SHARED_DIR/downloads/solr/lib $SOLR_HOME/
 
 chown -hR tomcat7:tomcat7 $SOLR_HOME
