@@ -76,6 +76,6 @@ mkdir /var/www/wsuls
 cp $SHARED_DIR/downloads/apache2/404.html /var/www/wsuls
 
 # enable all sites
-# a2ensite 000-default-ssl.conf
 a2ensite 000-default.conf
+a2ensite 000-default-ssl.conf
 service apache2 restart
