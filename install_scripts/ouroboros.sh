@@ -30,6 +30,12 @@ cd /opt
 git clone https://github.com/WSULib/ouroboros.git
 cd ouroboros
 
+####################################
+# DEBUG REMOVE
+####################################
+git checkout ldaplogin
+####################################
+
 # fire ouroboros_assets
 git submodule update --init --recursive
 
@@ -89,6 +95,7 @@ python setup.py install
 # Finish Ouroboros configuration
 cd /opt/ouroboros
 # create MySQL database, users, tables, then populate
+mysql --user=root --password=$SQL_PASSWORD < $SHARED_DIR/downloads/ouroboros/ouroboros_mysql_db_create.sql
 echo "creating MySQL database, users, and tables"
 ipython <<EOF
 from console import *

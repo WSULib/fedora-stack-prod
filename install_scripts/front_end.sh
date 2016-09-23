@@ -34,8 +34,16 @@ chown -R www-data:admin /var/www/wsuls/digitalcollections
 # pull in eTextReader
 git clone https://github.com/WSUlib/eTextReader.git
 chown -R www-data:www-data /var/www/wsuls/eTextReader
-cp $SHARED_DIR/downloads/front_end/eTextReader/* /var/www/wsuls/eTextReader/config
+# config
+cp $SHARED_DIR/downloads/front_end/eTextReader/config.js /var/www/wsuls/eTextReader/config
+cp $SHARED_DIR/downloads/front_end/eTextReader/config.php /var/www/wsuls/eTextReader/config
 sed -i "s/VM_HOST/$VM_HOST/g" /var/www/wsuls/eTextReader/config/*
+# sensitive
+cp $SHARED_DIR/downloads/front_end/eTextReader/sensitive.php /var/www/wsuls/eTextReader/php
+sed -i "s/FEDORA_ADMIN_USERNAME/$FEDORA_ADMIN_USERNAME/g" /var/www/wsuls/eTextReader/php/sensitive.php
+sed -i "s/FEDORA_ADMIN_PASSWORD/$FEDORA_ADMIN_PASSWORD/g" /var/www/wsuls/eTextReader/php/sensitive.php
+
+# chown
 chown -R www-data:admin /var/www/wsuls/eTextReader
 
 # index all documents in Fedora to Solr, specifically to power front-end
